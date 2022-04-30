@@ -14,13 +14,14 @@ export class Keyboard {
       return;
     }
     Keyboard.initialized = true;
-    document.addEventListener("keydown", Keyboard.onKeyDown);
-    document.addEventListener("keyup", Keyboard.onKeyUp);
+   document.addEventListener("keydown", Keyboard.onKeyDown);
+   document.addEventListener("keyup", Keyboard.onKeyUp);
   }
 
   private static onKeyDown(e: KeyboardEvent) {
     if (Keyboard.state.get(e.code) != true) {
       Keyboard.down.emit(e.code);
+     
     }
     Keyboard.state.set(e.code, true);
   }

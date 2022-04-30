@@ -24,29 +24,33 @@ export class Player extends PhysiscContainer {
         this.lokiAnimated.play();
         this.lokiAnimated.anchor.set(1, 1);
         this.lokiAnimated.animationSpeed = 0.25;
-        
+
         const auxZero = new Graphics;
         auxZero.beginFill(0xff00ff);
-        auxZero.drawCircle(0,0,10);
+        auxZero.drawCircle(0, 0, 10);
         auxZero.endFill();
 
         this.addChild(this.lokiAnimated);
         this.addChild(auxZero);
-        this.acceleration.y=Player.GRAVITY;
+        this.acceleration.y = Player.GRAVITY;
 
     }
-    public override update(deltaMS: number)
-    {
-        super.update(deltaMS/1000);
-        this.lokiAnimated.update(deltaMS/(1000/60));
-        if(Keyboard.state.get("ArrowRight"))
-        {
-            this.speed.x=250;
-        }else if(Keyboard.state.get("ArrowLeft"))
-        {
-            this.speed.x=-250;
-        }else{
-            this.speed.x=0;
+    
+    public override update(deltaMS: number) {
+
+        super.update(deltaMS / 1000);
+        this.lokiAnimated.update(deltaMS / (1000 / 60));
+
+    
+        if (Keyboard.state.get("ArrowRight")) {
+            this.speed.x = 650;
+            console.log("derecha");
+        } else if (Keyboard.state.get("ArrowLeft")) {
+            this.speed.x = -650;
+            console.log("izquierda");
+        } else {
+            this.speed.x = 0;
+
         }
     }
 }

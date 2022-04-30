@@ -1,7 +1,9 @@
 
 import { Application,  Loader, Ticker,  } from 'pixi.js'
 import { asseets } from './assets';
-import { Scene } from './Scene';
+import { Scene } from './Scenes/Scene';
+
+
 
 export const WHIDTH = 1920;
 export const HEIGHT = 1080;

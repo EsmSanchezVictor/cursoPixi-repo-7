@@ -1,8 +1,8 @@
 import { Container } from "pixi.js";
-import { HEIGHT, WHIDTH } from ".";
+import { HEIGHT, WHIDTH } from "..";
 
-import { Player } from "./game/Player";
-import { IUpdateable } from "./utils/IUpdateable";
+import { Player } from "../game/Player";
+import { IUpdateable } from "../utils/IUpdateable";
 
 
 
