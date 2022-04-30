@@ -1,6 +1,5 @@
 export const asseets=[
-    { url: "./pngegg.png", name: "loki" },
-    { url: "./fez.png", name: "Fez" },
+ 
     
     { url: "./lokicorre/correr1.png", name: "corre1" },
     { url: "./lokicorre/correr2.png", name: "corre2" },
@@ -11,8 +10,7 @@ export const asseets=[
     { url: "./lokicorre/correr7.png", name: "corre7" },
     { url: "./lokicorre/correr8.png", name: "corre8" },
 
-    { url: "./panel/panel.png", name: "panelLcd" },
-    { url: "./dvd/dvd.png", name: "dvd" }
+
     
 ];
 
