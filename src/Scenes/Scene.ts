@@ -1,6 +1,8 @@
-import { Container } from "pixi.js";
-import { HEIGHT, WHIDTH } from "..";
+import { Container, Texture, TilingSprite } from "pixi.js";
+import { HEIGHT, WIDTH } from "..";
+import { checkCollision } from "../game/IHitbox";
 
+import { Platform } from "../game/Platform";
 import { Player } from "../game/Player";
 import { IUpdateable } from "../utils/IUpdateable";
 
@@ -10,57 +12,77 @@ import { IUpdateable } from "../utils/IUpdateable";
 export class Scene extends Container implements IUpdateable {
 
     private playerLoki: Player;
+
+    private platforms:Platform[];
    
+    private world:Container;
+    private background: TilingSprite;
 
 
 
     constructor() {
-        super();
-        this.playerLoki=new Player();
-       
-        
-        this.addChild(this.playerLoki);
-     
 
+        super();
+        this.world = new Container();
+
+        this.background = new TilingSprite(Texture.from("Background"), WIDTH, HEIGHT);
+        this.addChild(this.background);
+
+        this.platforms = [];
+
+        let plat = new Platform()
+        plat.position.set(150,700);
+        this.world.addChild(plat);
+        this.platforms.push(plat);
+
+        plat = new Platform()
+        plat.position.set(1000,600);
+        this.world.addChild(plat);
+        this.platforms.push(plat);
+
+        plat = new Platform()
+        plat.position.set(1800,500);
+        this.world.addChild(plat);
+        this.platforms.push(plat);
+
+        plat = new Platform()
+        plat.position.set(-500,700);
+        this.world.addChild(plat);
+        this.platforms.push(plat);
+
+        this.playerLoki = new Player();
+        this.world.addChild(this.playerLoki);
+        this.addChild(this.world);
     }
     public update(deltaTime: number, _deltaFrame: number): void {
 
         this.playerLoki.update(deltaTime);
-        
-       
-       
 
-        if(this.playerLoki.x>WHIDTH){
-            
-            this.playerLoki.x=WHIDTH-430;
-            this.playerLoki.speed.x=Math.abs(this.playerLoki.speed.x)*-1;
-            this.playerLoki.scale.x=-1;
-       
-           
-            
-
-        }else if (this.playerLoki.x<0)
-        {
-            this.playerLoki.x=430;
-            this.playerLoki.speed.x=Math.abs(this.playerLoki.speed.x);  
-            this.playerLoki.scale.x=1; 
-          
-
-        }
-        if(this.playerLoki.y>HEIGHT){
-            this.playerLoki.y=HEIGHT;
-            this.playerLoki.speed.y=-1200+HEIGHT*Math.random();
-       
-
-        }else if(this.playerLoki.y<250){
-            this.playerLoki.y=250;
-            this.playerLoki.speed.y=HEIGHT*Math.random();
-      
+        for (let platform of this.platforms) {
+            const overlap = checkCollision(this.playerLoki, platform);
+            if (overlap != null)
+            {
+                this.playerLoki.separate(overlap, platform.position);
+            }
         }
 
-    
+
+        if (this.playerLoki.x > WIDTH) {
+            this.playerLoki.x = WIDTH - 430;
+        } else if (this.playerLoki.x < 0) {
+            this.playerLoki.x = 430;
+        }
+
+        if (this.playerLoki.y > HEIGHT) {
+            this.playerLoki.y = HEIGHT;
+            this.playerLoki.canJump = true;
+        }
+
+
     }
 
+
+        
 
 
 }

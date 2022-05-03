@@ -10,7 +10,10 @@ export const asseets=[
     { url: "./lokicorre/correr7.png", name: "corre7" },
     { url: "./lokicorre/correr8.png", name: "corre8" },
 
-
+    {url: "./desert/bg.png", name:"Background"},
+    {url: "./desert/block.png", name:"Block"},
+    {url: "./desert/cactus.png", name:"Cactus"},
+    {url: "./desert/platform.png", name:"Platform"},
     
 ];
 
