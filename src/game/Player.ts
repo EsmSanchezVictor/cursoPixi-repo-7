@@ -5,9 +5,9 @@ import { PhysiscContainer } from "./PhysiscContainer";
 
 export class Player extends PhysiscContainer implements IHitbox{
 
-    private static readonly GRAVITY = 100;
+    private static readonly GRAVITY = 5;
     private static readonly MOVE_SPEED =350; // 350; nover el pato
-    private static readonly JUMP_SPEED= 600;
+    private static readonly JUMP_SPEED= 150;
 
     public canJump=true;
     private lokiAnimated: AnimatedSprite;
@@ -17,6 +17,7 @@ export class Player extends PhysiscContainer implements IHitbox{
         //animated sprite
         this.lokiAnimated = new AnimatedSprite(
             [
+
                 Texture.from("0"),
                 Texture.from("1"),
                 Texture.from("2"),
