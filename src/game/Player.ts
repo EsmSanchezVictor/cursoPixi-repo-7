@@ -6,7 +6,9 @@ import { PhysiscContainer } from "./PhysiscContainer";
 export class Player extends PhysiscContainer implements IHitbox{
 
     private static readonly GRAVITY = 100;
-    private static readonly MOVE_SPEED = 100;
+    private static readonly MOVE_SPEED =350; // 350; nover el pato
+    private static readonly JUMP_SPEED= 600;
+
     public canJump=true;
     private lokiAnimated: AnimatedSprite;
     private hitbox:Graphics;
@@ -16,26 +18,26 @@ export class Player extends PhysiscContainer implements IHitbox{
         this.lokiAnimated = new AnimatedSprite(
             [
                 Texture.from("0"),
-           //     Texture.from("1"),
-           //     Texture.from("2"),
-           //     Texture.from("3"),
-           //     Texture.from("4"),
+                Texture.from("1"),
+                Texture.from("2"),
+                Texture.from("3"),
+                Texture.from("4"),
                 Texture.from("5"),
-            //   Texture.from("6"),
-            //   Texture.from("7"),
-            //   Texture.from("8"),
-            //   Texture.from("9"),
+                Texture.from("6"),
+                Texture.from("7"),
+                Texture.from("8"),
+                Texture.from("9"),
                 Texture.from("10"),
-            //   Texture.from("11"),
-            //   Texture.from("12"),
-            //   Texture.from("13"),
-               Texture.from("14"),
-             //   Texture.from("15"),
+                Texture.from("11"),
+                Texture.from("12"),
+                Texture.from("13"),
+                Texture.from("14"),
+                Texture.from("15"),
             ], true
         );
         this.lokiAnimated.play();
         this.lokiAnimated.anchor.set(0.5, 1);
-        this.lokiAnimated.animationSpeed = 0.65;
+        this.lokiAnimated.animationSpeed = 0.2;
 
         const auxZero = new Graphics;
         auxZero.beginFill(0xff00ff);
@@ -44,7 +46,7 @@ export class Player extends PhysiscContainer implements IHitbox{
 
         //---caja----
         this.hitbox=new Graphics();
-        this.hitbox.beginFill(0xff00ff,0.3);
+        this.hitbox.beginFill(0xff00ff,0);
         this.hitbox.drawRect(0,0,250,330);
         this.hitbox.endFill;
         this.hitbox.x=-150;
@@ -86,6 +88,13 @@ export class Player extends PhysiscContainer implements IHitbox{
             this.speed.x = 0;
             this.lokiAnimated.stop();
         }
+        if(Keyboard.state.get("ArrowDown"))
+        {
+            this.acceleration.y=Player.GRAVITY*5;
+        }else
+        {
+            this.acceleration.y=Player.GRAVITY;
+        }
 
         
     }
@@ -93,7 +102,7 @@ export class Player extends PhysiscContainer implements IHitbox{
         if(this.canJump)
         {
             this.canJump=false;
-            this.speed.y = -1000;
+            this.speed.y = -Player.JUMP_SPEED;
         }
     }
     public getHitbox():Rectangle

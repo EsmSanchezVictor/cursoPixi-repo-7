@@ -17,8 +17,11 @@ export const asseets=[
     { url: "./patocorre/14.png", name: "14" },
     { url: "./patocorre/15.png", name: "15" },
     
+    
 
-    {url: "./desert/bg.png", name:"Background"},
+    {url: "./desert/Tileable..jpg", name:"Background"},
+  //  {url: "./desert/bg.png", name:"Background"},
+    
     {url: "./desert/block.png", name:"Block"},
     {url: "./desert/cactus.png", name:"Cactus"},
     {url: "./desert/platform.png", name:"Platform"},
